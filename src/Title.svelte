@@ -1,3 +1,7 @@
+<script>
+	let title = 'default title'
+</script>
+
 <div class="main-title">
-	<h2>add expense</h2>
+	<h2>{title}</h2>
 </div>
