@@ -5,3 +5,4 @@
 
 <Navbar />
 <Title />
+<Title title="a title coming from the outside of the component Title.svelte logic" />
