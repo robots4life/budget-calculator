@@ -1,5 +1,5 @@
 <script>
-	let title = 'default title'
+	export let title = 'default title'
 </script>
 
 <div class="main-title">
