@@ -22,6 +22,10 @@ Tweak `.prettierrc.json` and `.eslintrc.json` to your liking.
 
 `npm run dev`
 
+**Improve Svelte Debugging**
+
+https://addons.mozilla.org/en-US/firefox/addon/svelte-devtools/
+
 ---
 
 ---
