@@ -1,0 +1,8 @@
+/node_modules/
+/public/build/
+
+.devilbox/
+.DS_Store
+LICENSE
+README.md
+setup
