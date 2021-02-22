@@ -14,6 +14,8 @@
 
 <Navbar />
 
+<img src="images/01_iterate_over_array_vs_object.png" alt="" />
+
 <!-- https://stackoverflow.com/a/61089468 -->
 <pre>
 	<code>
