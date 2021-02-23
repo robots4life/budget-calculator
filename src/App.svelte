@@ -63,6 +63,7 @@ https://github.com/sveltejs/svelte/issues/894
 {#each fruits as fruit}
 	<h1>fruit: {fruit}</h1>
 	<Title title="{fruit}" />
+	<Title title_name="Fruit" title="{fruit}" />
 {/each}
 
 <style>
