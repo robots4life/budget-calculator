@@ -15,4 +15,10 @@
 <main class="content">
 	<!-- here we are passing down / assigning the expeneses data in the let expenses variable to the property "expenses" from the ExpensesList component -->
 	<ExpensesList expenses="{expenses}" />
+	<hr />
+	<p>
+		before there are any expenses the {`{:else}`} block of the ExpensesList component is used to
+		display a message or data
+	</p>
+	<ExpensesList />
 </main>
