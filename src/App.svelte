@@ -1,5 +1,6 @@
 <script>
 	import Navbar from './Navbar.svelte'
+	import Title from './Title.svelte'
 	let fruits = ['watermelon', 'lemon', 'kiwi', 'orange', 'banana', 'cherry', 'blueberry']
 	let fruits2 = {
 		1: 'watermelon',
@@ -14,7 +15,7 @@
 
 <Navbar />
 
-<img src="images/01_iterate_over_array_vs_object.png" alt="" />
+<img src="images/02_iterate_over_array_vs_object.png" alt="" />
 
 <!-- https://stackoverflow.com/a/61089468 -->
 <pre>
@@ -48,12 +49,30 @@ https://github.com/sveltejs/svelte/issues/894
 	<p>{fruit_2_key}: {fruit_2_value} |</p>
 {/each}
 
+<pre>
+	<code>
+		{`
+{#each fruits as fruit}
+	<h1>fruit: {fruit}</h1>
+	<Title title="{fruit}" />
+{/each}
+		`}
+</code>
+</pre>
+
+{#each fruits as fruit}
+	<h1>fruit: {fruit}</h1>
+	<Title title="{fruit}" />
+{/each}
+
 <style>
 	pre {
 		color: white;
 		background-color: black;
 	}
-	p {
+	p,
+	h1,
+	pre {
 		font-size: 2rem;
 	}
 </style>
