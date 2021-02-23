@@ -3,6 +3,8 @@
 	import SectionTitle from './Title.svelte'
 	import SingleExpense from './SingleExpense.svelte'
 	// data
+	// this is the property "expenses" of the ExpensesList component
+	// we can make this available in App.svelte by exporting it
 	export let expenses = []
 </script>
 
