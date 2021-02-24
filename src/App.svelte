@@ -1,79 +1,18 @@
 <script>
+	// components
 	import Navbar from './Navbar.svelte'
-	import Title from './Title.svelte'
-	let fruits = ['watermelon', 'lemon', 'kiwi', 'orange', 'banana', 'cherry', 'blueberry']
-	let fruits2 = {
-		1: 'watermelon',
-		2: 'lemon',
-		3: 'kiwi',
-		4: 'orange',
-		5: 'banana',
-		6: 'cherry',
-		7: 'blueberry'
-	}
+	// when we import the ExpensesList the property "expenses" in it is also importet as part of the component
+	import ExpensesList from './ExpensesList.svelte'
+
+	// data
+	import expensesData from './expenses'
+	// we define the variable for the expenses data and can name it anything
+	// in this case it is named the same as the property "expenses" of the ExpensesList component
+	let expenses = [...expensesData]
 </script>
 
 <Navbar />
-
-<img src="images/02_iterate_over_array_vs_object.png" alt="" />
-
-<!-- https://stackoverflow.com/a/61089468 -->
-<pre>
-	<code>
-		{`
-{#each fruits as fruit, index}
-	<p>{fruit} | {index}</p>
-{/each}
-		`}
-	</code>
-</pre>
-
-{#each fruits as fruit, index}
-	<p>{fruit} | {index}</p>
-{/each}
-
-<pre>
-	<code>
-		{`
-Iterate over objects		
-https://github.com/sveltejs/svelte/issues/894
-
-{#each Object.entries(fruits2) as [fruit_2_key, fruit_2_value]}
-	<p>{fruit_2_key}: {fruit_2_value} |</p>
-{/each}
-		`}
-</code>
-</pre>
-
-{#each Object.entries(fruits2) as [fruit_2_key, fruit_2_value]}
-	<p>{fruit_2_key}: {fruit_2_value} |</p>
-{/each}
-
-<pre>
-	<code>
-		{`
-{#each fruits as fruit}
-	<h1>fruit: {fruit}</h1>
-	<Title title="{fruit}" />
-{/each}
-		`}
-</code>
-</pre>
-
-{#each fruits as fruit}
-	<h1>fruit: {fruit}</h1>
-	<Title title="{fruit}" />
-	<Title title_name="Fruit" title="{fruit}" />
-{/each}
-
-<style>
-	pre {
-		color: white;
-		background-color: black;
-	}
-	p,
-	h1,
-	pre {
-		font-size: 2rem;
-	}
-</style>
+<main class="content">
+	<!-- here we are passing down / assigning the expeneses data in the let expenses variable to the property "expenses" from the ExpensesList component -->
+	<ExpensesList expenses="{expenses}" />
+</main>
