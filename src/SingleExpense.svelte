@@ -5,9 +5,24 @@
 	export let amount
 </script>
 
-<div>
-	<h1>index : {index}</h1>
-	<p>id : {id}</p>
-	<p>name : {name}</p>
-	<p>amount : {amount}</p>
-</div>
+<acrtice class="single-expense">
+	<div class="expnese-info">
+		<p>index : {index}</p>
+		<p>id : {id}</p>
+		<h2>
+			{name}
+			<button class="amount-btn">
+				<i class="fas fa-caret-down"></i>
+			</button>
+		</h2>
+		<h4>amount : ${amount}</h4>
+	</div>
+	<div class="expense-buttons">
+		<button class="expense-btn edit-btn">
+			<i class="fas fa-pen"></i>
+		</button>
+		<button class="expense-btn delete-btn">
+			<i class="fas fa-trash"></i>
+		</button>
+	</div>
+</acrtice>
