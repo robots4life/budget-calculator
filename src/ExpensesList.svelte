@@ -2,6 +2,8 @@
 	// components
 	import SectionTitle from './Title.svelte'
 	import SingleExpense from './SingleExpense.svelte'
+	import App from './App.svelte'
+	import Navbar from './Navbar.svelte'
 	// data
 	// this is the property "expenses" of the ExpensesList component
 	// we can make this available in App.svelte by exporting it
