@@ -2,8 +2,6 @@
 	// components
 	import SectionTitle from './Title.svelte'
 	import SingleExpense from './SingleExpense.svelte'
-	import App from './App.svelte'
-	import Navbar from './Navbar.svelte'
 	// data
 	// this is the property "expenses" of the ExpensesList component
 	// we can make this available in App.svelte by exporting it
@@ -26,83 +24,38 @@
 <section>
 	<SectionTitle title="expenses list" />
 
-	<pre>
-	<code>
-		{`
+	<img src="/images/04_component_communication.png" alt="" />
 
-Case 1
-SingleExpense.svelte
-====================
+	<br />
+	<br />
 
-<script>
-	export let index
-	export let expense
-<\/script>
+	<h1>setContext - getContext</h1>
 
-<div>
-	<h1>index : {index}</h1>
-	<p>id : {expense.id}</p>
-	<p>name : {expense.name}</p>
-	<p>amount : {expense.amount}</p>
-</div>
+	<img src="/images/05_setContext_getContext.png" alt="" />
 
+	<br />
+	<br />
 
+	<h1>store</h1>
 
-Case 2
-SingleExpense.svelte
-====================
+	<img src="/images/06_store.png" alt="" />
 
-<script>
-	export let index
-	export let expense
-	let { id, name, amount } = expense
-<\/script>
+	<br />
+	<br />
 
-<div>
-	<h1>index : {index}</h1>
-	<p>id : {id}</p>
-	<p>name : {name}</p>
-	<p>amount : {amount}</p>
-</div>
+	<h1>no direct communication possible between components</h1>
 
+	<img src="/images/07_no_component_communication_possible.png" alt="" />
 
-Case 3
-SingleExpense.svelte
-====================
+	<br />
+	<br />
 
-<script>
-	export let index
-	export let id
-	export let name
-	export let amount
-<\/script>
+	<h1>component communication over the store</h1>
 
-<div>
-	<h1>index : {index}</h1>
-	<p>id : {id}</p>
-	<p>name : {name}</p>
-	<p>amount : {amount}</p>
-</div>
+	<img src="/images/08_component_communication_over_store.png" alt="" />
 
-ExpensesList.svelte
-
-Note there is NO exported property 'expense' in
-SingleExpense.svelte any more
-so we CANNOT do
-
-<SingleExpense index="{index + 1}" expense={...expense} />
-
-but HAVE to use the spread operator WITHOUT the property!!
-
-<SingleExpense index="{index + 1}" {...expense} />
-
-
-`}
-	</code>
-</pre>
-
-	<hr />
-	<hr />
+	<br />
+	<br />
 
 	<ul>
 		{#each expenses as expense, index}
