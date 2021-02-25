@@ -5,14 +5,18 @@
 	export let amount
 
 	let displayExpenseData = false
+
+	function toggleDisplayExpenseData() {
+		displayExpenseData = !displayExpenseData
+	}
 </script>
 
 <acrtice class="single-expense">
 	<div class="expnese-info">
 		<h2>
 			{name}
-			<button class="amount-btn">
-				<i class="fas fa-caret-down"></i>
+			<button class="amount-btn" on:click="{toggleDisplayExpenseData}">
+				<i class="fas fa-caret-down" id="index-{index}"></i>
 			</button>
 		</h2>
 		{#if displayExpenseData}
