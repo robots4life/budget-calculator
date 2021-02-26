@@ -37,9 +37,31 @@
 		console.log(id, name, amount)
 	}
 	// context
+	// approach 1
 	// here we define the context for the removeSingleExpense() function
-	setContext('removeSingleExpense', removeSingleExpense)
-	setContext('editSingleExpense', editSingleExpense)
+	// setContext('removeSingleExpense', removeSingleExpense)
+
+	// if we want multiple function we define them line by line
+	// setContext('editSingleExpense', editSingleExpense)
+
+	// this is NOT possible, to have multiple functions you like to pass with set- & getContext
+	// you have to use an object with keys and values, where the value is the function
+	// you like to pass
+	// setContext('removeSingleExpense, editSingleExpense', removeSingleExpense, editSingleExpense)
+
+	// approach 2
+	// the name 'state' can be any other value if you like
+	// here we set up multiple functions to be passed by set- and recieved by getContext
+	const state = {
+		name: 'hello world',
+		removeSingleExpense: removeSingleExpense,
+		editSingleExpense: editSingleExpense
+	}
+
+	// here we pass the state object as a second argument to the setContext function
+	// in this case all methods of the object are being passed and can be recieved
+	// by the components that need them
+	setContext('state', state)
 </script>
 
 <Navbar />

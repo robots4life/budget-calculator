@@ -19,8 +19,17 @@
 	// here we get the context, make a const variable and set that equal
 	// to getContext passing the name of the removeSingleExpense() function
 	// from App.svelte as first argument
-	const removeSingleExpense = getContext('removeSingleExpense')
-	const editSingleExpense = getContext('editSingleExpense')
+	// const removeSingleExpense = getContext('removeSingleExpense')
+	// const editSingleExpense = getContext('editSingleExpense')
+
+	// approach 1
+	// here we destructure the state object and just use
+	// the property that we need
+	const { removeSingleExpense } = getContext('state')
+	const { editSingleExpense } = getContext('state')
+
+	// approach 2
+	const state = getContext('state')
 </script>
 
 <acrtice class="single-expense">
@@ -40,12 +49,8 @@
 	</div>
 	<div class="expense-buttons">
 		<!-- edit button -->
-		<button
-			class="expense-btn edit-btn"
-			on:click="{() => {
-				editSingleExpense(id, name, amount)
-			}}"
-		>
+		<!-- approach 2 - when we pass the whole state object the methods can be called with a dot . -->
+		<button class="expense-btn edit-btn" on:click="{state.editSingleExpense(id, name, amount)}">
 			<i class="fas fa-pen"></i>
 		</button>
 
@@ -62,6 +67,8 @@
 					removeSingleExpense(id)
 				}}"
 		also works fine -->
+
+		<!-- approach 1 -->
 		<button class="expense-btn delete-btn" on:click="{removeSingleExpense(id)}">
 			<i class="fas fa-trash"></i>
 		</button>
