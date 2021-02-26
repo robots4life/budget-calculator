@@ -32,9 +32,14 @@
 		// if the id we are passing is NOT the idem.id of any of the array items it will be in the new array
 		expenses = expenses.filter((item) => item.id !== id)
 	}
+
+	function editSingleExpense(id, name, amount) {
+		console.log(id, name, amount)
+	}
 	// context
 	// here we define the context for the removeSingleExpense() function
 	setContext('removeSingleExpense', removeSingleExpense)
+	setContext('editSingleExpense', editSingleExpense)
 </script>
 
 <Navbar />

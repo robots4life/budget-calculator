@@ -20,6 +20,7 @@
 	// to getContext passing the name of the removeSingleExpense() function
 	// from App.svelte as first argument
 	const removeSingleExpense = getContext('removeSingleExpense')
+	const editSingleExpense = getContext('editSingleExpense')
 </script>
 
 <acrtice class="single-expense">
@@ -39,7 +40,12 @@
 	</div>
 	<div class="expense-buttons">
 		<!-- edit button -->
-		<button class="expense-btn edit-btn">
+		<button
+			class="expense-btn edit-btn"
+			on:click="{() => {
+				editSingleExpense(id, name, amount)
+			}}"
+		>
 			<i class="fas fa-pen"></i>
 		</button>
 
