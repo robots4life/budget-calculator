@@ -32,5 +32,5 @@
 
 	<!-- here we are passing down the removeSingleExpense(id) function to ExpensesList.svelte with a property called  "removeSingleExpense"
 	that means we also have to create the property as export let removeSingleExpense inside the ExpensesList.svelte component -->
-	<ExpensesList expenses="{expenses}" removeSingleExpense="{removeSingleExpense}" />
+	<ExpensesList expenses="{expenses}" />
 </main>

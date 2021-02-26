@@ -4,13 +4,6 @@
 	export let name
 	export let amount
 
-	// finally we arrived at the 3rd deepest component in the component tree
-	// here we can now use the removeSingleExpense(id) function together
-	// with the exported removeSingleExpense property
-	// this leaves us with a trail of properties through all 3 components
-	// from App to ExpensesList to SingleExpense
-	export let removeSingleExpense
-
 	let displayExpenseData = false
 
 	function toggleDisplayExpenseData() {
@@ -52,7 +45,7 @@
 					removeSingleExpense(id)
 				}}"
 		also works fine -->
-		<button class="expense-btn delete-btn" on:click="{removeSingleExpense(id)}">
+		<button class="expense-btn delete-btn">
 			<i class="fas fa-trash"></i>
 		</button>
 	</div>
