@@ -1,35 +1,21 @@
 <script>
-	// lib
-	// having set tup setContext in App.svelte we now need to
-	// also import the counterpart, getContext in SingleExpense.svelte
-	import { getContext } from 'svelte'
-
-	// properties
 	export let index
 	export let id
 	export let name
 	export let amount
+
+	// finally we arrived at the 3rd deepest component in the component tree
+	// here we can now use the removeSingleExpense(id) function together
+	// with the exported removeSingleExpense property
+	// this leaves us with a trail of properties through all 3 components
+	// from App to ExpensesList to SingleExpense
+	export let removeSingleExpense
 
 	let displayExpenseData = false
 
 	function toggleDisplayExpenseData() {
 		displayExpenseData = !displayExpenseData
 	}
-
-	// here we get the context, make a const variable and set that equal
-	// to getContext passing the name of the removeSingleExpense() function
-	// from App.svelte as first argument
-	// const removeSingleExpense = getContext('removeSingleExpense')
-	// const editSingleExpense = getContext('editSingleExpense')
-
-	// approach 1
-	// here we destructure the state object and just use
-	// the property that we need
-	const { removeSingleExpense } = getContext('state')
-	const { editSingleExpense } = getContext('state')
-
-	// approach 2
-	const state = getContext('state')
 </script>
 
 <acrtice class="single-expense">
@@ -45,13 +31,11 @@
 			<p>index : {index}</p>
 			<p>id : {id}</p>
 			<h4>amount : ${amount}</h4>
-			<h4>getContext from state object : {state.name}</h4>
 		{/if}
 	</div>
 	<div class="expense-buttons">
 		<!-- edit button -->
-		<!-- approach 2 - when we pass the whole state object the methods can be called with a dot . -->
-		<button class="expense-btn edit-btn" on:click="{state.editSingleExpense(id, name, amount)}">
+		<button class="expense-btn edit-btn">
 			<i class="fas fa-pen"></i>
 		</button>
 
@@ -68,8 +52,6 @@
 					removeSingleExpense(id)
 				}}"
 		also works fine -->
-
-		<!-- approach 1 -->
 		<button class="expense-btn delete-btn" on:click="{removeSingleExpense(id)}">
 			<i class="fas fa-trash"></i>
 		</button>
