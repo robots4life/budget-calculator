@@ -2,6 +2,7 @@
 	// components
 	import SectionTitle from './Title.svelte'
 	import SingleExpense from './SingleExpense.svelte'
+
 	// data
 	// this is the property "expenses" of the ExpensesList component
 	// we can make this available in App.svelte by exporting it
@@ -19,6 +20,11 @@
 	// 2: Object { id: 675227527766.1556, name: "student loan", amount: 400 }
 	// ​
 	// 3: Object { id: 1162592561934.1555, name: "credit card", amount: 2000 }
+
+	// <ExpensesList> was created with unknown prop 'removeSingleExpense'
+	// since we added the removeSingleExpense(id) function to App.svelte
+	// we now also have to add a property with that name to the ExpensesList.svelte component
+	export let removeSingleExpense
 </script>
 
 <section>
@@ -59,7 +65,12 @@
 
 	<ul>
 		{#each expenses as expense, index}
-			<SingleExpense index="{index + 1}" {...expense} />
+			<!-- same as passing down the property and attached click handlet from App to ExpensesList we also need to pass it down one level deeper to the SingleExpense component -->
+			<SingleExpense
+				index="{index + 1}"
+				{...expense}
+				removeSingleExpense="{removeSingleExpense}"
+			/>
 		{:else}
 			<h2>currently there are no expenses</h2>
 		{/each}
