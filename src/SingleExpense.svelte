@@ -45,6 +45,7 @@
 			<p>index : {index}</p>
 			<p>id : {id}</p>
 			<h4>amount : ${amount}</h4>
+			<h4>getContext from state object : {state.name}</h4>
 		{/if}
 	</div>
 	<div class="expense-buttons">
