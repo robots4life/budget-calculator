@@ -1,12 +1,4 @@
 <script>
-	// lib
-	// here we import setContext from Svelte and define
-	// a name and function for it so that it can use i.e.
-	// the removeSingleExpense() function inside
-	// the SingleExpense.svelte compontent SKIPPING the
-	// middle component ExpensesList.Ssvelte
-	import { setContext } from 'svelte'
-
 	// components
 	import Navbar from './Navbar.svelte'
 	// when we import the ExpensesList the property "expenses" in it is also importet as part of the component
@@ -32,36 +24,6 @@
 		// if the id we are passing is NOT the idem.id of any of the array items it will be in the new array
 		expenses = expenses.filter((item) => item.id !== id)
 	}
-
-	function editSingleExpense(id, name, amount) {
-		console.log(id, name, amount)
-	}
-	// context
-	// approach 1
-	// here we define the context for the removeSingleExpense() function
-	// setContext('removeSingleExpense', removeSingleExpense)
-
-	// if we want multiple function we define them line by line
-	// setContext('editSingleExpense', editSingleExpense)
-
-	// this is NOT possible, to have multiple functions you like to pass with set- & getContext
-	// you have to use an object with keys and values, where the value is the function
-	// you like to pass
-	// setContext('removeSingleExpense, editSingleExpense', removeSingleExpense, editSingleExpense)
-
-	// approach 2
-	// the name 'state' can be any other value if you like
-	// here we set up multiple functions to be passed by set- and recieved by getContext
-	const state = {
-		name: 'hello world',
-		removeSingleExpense: removeSingleExpense,
-		editSingleExpense: editSingleExpense
-	}
-
-	// here we pass the state object as a second argument to the setContext function
-	// in this case all methods of the object are being passed and can be recieved
-	// by the components that need them
-	setContext('state', state)
 </script>
 
 <Navbar />
@@ -70,5 +32,5 @@
 
 	<!-- here we are passing down the removeSingleExpense(id) function to ExpensesList.svelte with a property called  "removeSingleExpense"
 	that means we also have to create the property as export let removeSingleExpense inside the ExpensesList.svelte component -->
-	<ExpensesList expenses="{expenses}" />
+	<ExpensesList expenses="{expenses}" removeSingleExpense="{removeSingleExpense}" />
 </main>
