@@ -3,7 +3,7 @@
 	import SectionTitle from './Title.svelte'
 	import SingleExpense from './SingleExpense.svelte'
 
-	// data
+	// properties
 	// this is the property "expenses" of the ExpensesList component
 	// we can make this available in App.svelte by exporting it
 	// in the case of the tut this variable is set to an empty array

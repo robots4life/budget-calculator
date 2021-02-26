@@ -1,4 +1,12 @@
 <script>
+	// lib
+	// here we import setContext from Svelte and define
+	// a name and function for it so that it can use i.e.
+	// the removeSingleExpense() function inside
+	// the SingleExpense.svelte compontent SKIPPING the
+	// middle component ExpensesList.Ssvelte
+	import { setContext } from 'svelte'
+
 	// components
 	import Navbar from './Navbar.svelte'
 	// when we import the ExpensesList the property "expenses" in it is also importet as part of the component
@@ -24,6 +32,9 @@
 		// if the id we are passing is NOT the idem.id of any of the array items it will be in the new array
 		expenses = expenses.filter((item) => item.id !== id)
 	}
+	// context
+	// here we define the context for the removeSingleExpense() function
+	setContext('removeSingleExpense', removeSingleExpense)
 </script>
 
 <Navbar />

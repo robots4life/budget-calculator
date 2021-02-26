@@ -1,4 +1,10 @@
 <script>
+	// lib
+	// having set tup setContext in App.svelte we now need to
+	// also import the counterpart, getContext in SingleExpense.svelte
+	import { getContext } from 'svelte'
+
+	// properties
 	export let index
 	export let id
 	export let name
@@ -9,6 +15,11 @@
 	function toggleDisplayExpenseData() {
 		displayExpenseData = !displayExpenseData
 	}
+
+	// here we get the context, make a const variable and set that equal
+	// to getContext passing the name of the removeSingleExpense() function
+	// from App.svelte as first argument
+	const removeSingleExpense = getContext('removeSingleExpense')
 </script>
 
 <acrtice class="single-expense">
@@ -45,7 +56,7 @@
 					removeSingleExpense(id)
 				}}"
 		also works fine -->
-		<button class="expense-btn delete-btn">
+		<button class="expense-btn delete-btn" on:click="{removeSingleExpense(id)}">
 			<i class="fas fa-trash"></i>
 		</button>
 	</div>
