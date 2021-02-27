@@ -39,6 +39,7 @@
 
 	// for clearing all expenses we make a new function and add that to the state object
 	function deleteAllExpenses() {
+		// we simply set the expenses array of objects each with single expense data to an emtpy array
 		expenses = []
 	}
 
