@@ -18,6 +18,28 @@
 <section>
 	<SectionTitle title="expenses list" />
 
+	<ul>
+		{#each expenses as expense, index}
+			<!-- same as passing down the property and attached click handlet from App to ExpensesList we also need to pass it down one level deeper to the SingleExpense component -->
+
+			<!-- by using createEventDispatcher we can simply forward the event in any components that are
+					between the root component and the destination component in the tree
+
+					so we can simply do on:deleteSingleExpense where
+					
+					deleteSingleExpense
+
+					come from
+					
+					on:click="{() => dispatch('deleteSingleExpense', { id, name: 'hello from a single expense' })}"
+					in SingleExpense.svelte -->
+
+			<SingleExpense index="{index + 1}" {...expense} on:deleteSingleExpense />
+		{:else}
+			<h2>currently there are no expenses</h2>
+		{/each}
+	</ul>
+
 	<img src="/images/04_component_communication.png" alt="" />
 
 	<br />
@@ -50,13 +72,4 @@
 
 	<br />
 	<br />
-
-	<ul>
-		{#each expenses as expense, index}
-			<!-- same as passing down the property and attached click handlet from App to ExpensesList we also need to pass it down one level deeper to the SingleExpense component -->
-			<SingleExpense index="{index + 1}" {...expense} />
-		{:else}
-			<h2>currently there are no expenses</h2>
-		{/each}
-	</ul>
 </section>

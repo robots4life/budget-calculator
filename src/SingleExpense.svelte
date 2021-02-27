@@ -1,4 +1,7 @@
 <script>
+	// lib
+	import { createEventDispatcher } from 'svelte'
+
 	// properties
 	export let index
 	export let id
@@ -10,6 +13,8 @@
 	function toggleDisplayExpenseData() {
 		displayExpenseData = !displayExpenseData
 	}
+
+	const dispatch = createEventDispatcher()
 </script>
 
 <acrtice class="single-expense">
@@ -48,7 +53,18 @@
 				}}"
 		also works fine -->
 
-		<button class="expense-btn delete-btn">
+		<!-- we can either pass a single 2nd argument like so
+			on:click="{() => dispatch('deleteSingleExpense', id)}"
+		
+			or we can pass an object with multiple properties as
+			2nd argument to the dispatch event
+			
+			on:click="{() => dispatch('deleteSingleExpense', {id, name: 'hello from a single expense'} )}"-->
+		<button
+			class="expense-btn delete-btn"
+			on:click="{() =>
+				dispatch('deleteSingleExpense', { id, name: 'hello from a single expense' })}"
+		>
 			<i class="fas fa-trash"></i>
 		</button>
 	</div>
