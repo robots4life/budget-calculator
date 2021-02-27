@@ -12,7 +12,25 @@
 	// when we import the ExpensesList the property "expenses" in it is also importet as part of the component
 	import ExpensesList from './ExpensesList.svelte'
 
+	// to work the the total amount of all expenses as well as the number of expenses
+	// we import the ExpensesTotal.svelte component
+	import TotalExpenses from './TotalExpenses.svelte'
+
 	// data
+	// to work the the total amount of all expenses as well as the number of expenses
+	// we also export the properties of that component
+	let totals_title
+	let total_amount_of_all_expenses = 0
+	let total_number_of_expenses = 0
+
+	// beloved reactiviy
+	// so to introduce reactivity to the App we use the $ dollar sing and a colon
+	// after that it is vanilla JavsScript and up to us what to do with the value
+	$: total_amount_of_all_expenses = expenses.reduce((accumulater, current_item) => {
+		console.log(accumulater, current_item.amount)
+		return (accumulater = accumulater + current_item.amount)
+	}, 0)
+
 	import expensesData from './expenses'
 	// we define the variable for the expenses data and can name it anything
 	// in this case it is named the same as the property "expenses" of the ExpensesList component
@@ -74,6 +92,13 @@
 
 <Navbar />
 <main class="content">
+	<!-- let's place the TotalExpenses component at the beginning of the App.. -->
+	<TotalExpenses
+		totals_title="{totals_title}"
+		total_amount_of_all_expenses="{total_amount_of_all_expenses}"
+		total_number_of_expenses="{total_number_of_expenses}"
+	/>
+
 	<!-- here we are passing down / assigning the expeneses data in the let expenses variable to the property "expenses" from the ExpensesList component -->
 
 	<!-- here we are passing down the removeSingleExpense(id) function to ExpensesList.svelte with a property called  "removeSingleExpense"
