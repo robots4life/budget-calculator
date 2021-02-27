@@ -1,4 +1,7 @@
 <script>
+	// lib
+	import { getContext } from 'svelte'
+
 	// components
 	import SectionTitle from './Title.svelte'
 	import SingleExpense from './SingleExpense.svelte'
@@ -13,43 +16,12 @@
 	export let expenses
 
 	console.log(expenses)
+
+	const { deleteAllExpenses } = getContext('state')
 </script>
 
 <section>
 	<SectionTitle title="expenses list" />
-
-	<img src="/images/04_component_communication.png" alt="" />
-
-	<br />
-	<br />
-
-	<h1>setContext - getContext</h1>
-
-	<img src="/images/05_setContext_getContext.png" alt="" />
-
-	<br />
-	<br />
-
-	<h1>store</h1>
-
-	<img src="/images/06_store.png" alt="" />
-
-	<br />
-	<br />
-
-	<h1>no direct communication possible between components</h1>
-
-	<img src="/images/07_no_component_communication_possible.png" alt="" />
-
-	<br />
-	<br />
-
-	<h1>component communication over the store</h1>
-
-	<img src="/images/08_component_communication_over_store.png" alt="" />
-
-	<br />
-	<br />
 
 	<ul>
 		{#each expenses as expense, index}
@@ -59,4 +31,8 @@
 			<h2>currently there are no expenses</h2>
 		{/each}
 	</ul>
+
+	<button class="btn btn-primary btn-block" on:click="{deleteAllExpenses}"
+		>clear all expenses</button
+	>
 </section>

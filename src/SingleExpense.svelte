@@ -26,7 +26,7 @@
 	// here we destructure the state object and just use
 	// the property that we need
 	const { removeSingleExpense } = getContext('state')
-	const { editSingleExpense } = getContext('state')
+	// const { editSingleExpense } = getContext('state')
 
 	// approach 2
 	const state = getContext('state')
