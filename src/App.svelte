@@ -36,6 +36,12 @@
 	function editSingleExpense(id, name, amount) {
 		console.log(id, name, amount)
 	}
+
+	// for clearing all expenses we make a new function and add that to the state object
+	function deleteAllExpenses() {
+		expenses = []
+	}
+
 	// context
 	// approach 1
 	// here we define the context for the removeSingleExpense() function
@@ -55,7 +61,8 @@
 	const state = {
 		name: 'hello world',
 		removeSingleExpense: removeSingleExpense,
-		editSingleExpense: editSingleExpense
+		editSingleExpense: editSingleExpense,
+		deleteAllExpenses: deleteAllExpenses
 	}
 
 	// here we pass the state object as a second argument to the setContext function
@@ -71,4 +78,46 @@
 	<!-- here we are passing down the removeSingleExpense(id) function to ExpensesList.svelte with a property called  "removeSingleExpense"
 	that means we also have to create the property as export let removeSingleExpense inside the ExpensesList.svelte component -->
 	<ExpensesList expenses="{expenses}" />
+
+	<br />
+	<br />
+
+	<img src="/images/04_component_communication.png" alt="" />
+
+	<br />
+	<br />
+
+	<h1>setContext - getContext</h1>
+
+	<img src="/images/05_setContext_getContext.png" alt="" />
+
+	<br />
+	<br />
+
+	<h1>store</h1>
+
+	<img src="/images/06_store.png" alt="" />
+
+	<br />
+	<br />
+
+	<h1>no direct communication possible between components</h1>
+
+	<img src="/images/07_no_component_communication_possible.png" alt="" />
+
+	<br />
+	<br />
+
+	<h1>component communication over the store</h1>
+
+	<img src="/images/08_component_communication_over_store.png" alt="" />
+
+	<br />
+	<br />
 </main>
+
+<style>
+	img {
+		width: 100%;
+	}
+</style>
