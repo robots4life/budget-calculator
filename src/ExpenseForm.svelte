@@ -1,18 +1,37 @@
 <script>
 	import Title from './Title.svelte'
+	let name = 'dinner'
+	let amount = 500
 </script>
+
+<!-- to illustrate two way binding we have two paragraphs
+    as we change values in the input fields in the form below
+    the values in these paragraphs change as well -->
+<p>
+	to illustrate two way binding we have two paragraphs as we change values in the input fields in
+	the form below the values in these paragraphs change as well
+</p>
+<p>name : {name}</p>
+<p>amount: {amount}</p>
 
 <section class="form">
 	<Title title="add expense" />
 	<form class="expense-form">
 		<div class="form-control">
 			<label for="name">name</label>
-			<input type="text" id="name" />
+
+			<!-- we bind the value of variable NAME to the value it receives in the input form
+                this is two way binding - between the defined variable NAME and the input field value -->
+			<input type="text" id="name" bind:value="{name}" />
 		</div>
+
 		<div class="form-control">
 			<label for="amount">amount</label>
-			<input type="text" id="amount" />
+			<!-- we bind the value of variable AMOUNT to the value it receives in the input form
+                this is two way binding - between the defined variable AMOUNT and the input field value -->
+			<input type="text" id="amount" bind:value="{amount}" />
 		</div>
+
 		<p class="form-empty">please fill out all the form fields</p>
 		<button type="submit" class="btn btn-block">add expense</button>
 		<button type="button" class="close-btn"
