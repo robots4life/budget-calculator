@@ -2,6 +2,13 @@
 	import Title from './Title.svelte'
 	let name = 'dinner'
 	let amount = 500
+
+	// this is AWESOME
+	// by setting up a reactive statement and logging
+	// the variables name and amount that have
+	// two way binding in place we can immediately see
+	// their new value in the console :))
+	$: console.log({ name, amount })
 </script>
 
 <!-- to illustrate two way binding we have two paragraphs
