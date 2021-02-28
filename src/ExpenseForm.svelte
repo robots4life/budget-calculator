@@ -1,7 +1,7 @@
 <script>
 	import Title from './Title.svelte'
-	let name = 'dinner'
-	let amount = 500
+	let name = ''
+	let amount = null
 
 	// this is AWESOME
 	// by setting up a reactive statement and logging
@@ -9,6 +9,21 @@
 	// two way binding in place we can immediately see
 	// their new value in the console :))
 	$: console.log({ name, amount })
+
+	// check for empty fields in the form
+	// remember, a truthy value is considered TRUE
+	// when encountered in a boolean context
+
+	// example
+	// if name is an empty string it is considered falsy
+	// and hence it is not logged
+	// however if the name value has a real string value
+	// it is considered truthy and hence it is
+	// also being logged
+	if (name) {
+		console.log(name)
+	}
+	$: isEmpty = !name || !amount
 </script>
 
 <!-- to illustrate two way binding we have two paragraphs
@@ -38,8 +53,17 @@
                 this is two way binding - between the defined variable AMOUNT and the input field value -->
 			<input type="text" id="amount" bind:value="{amount}" />
 		</div>
-
-		<p class="form-empty">please fill out all the form fields</p>
+		<!-- here we check if the isEmpty variable is true, that is the case when
+		either !name or !amount are given in the bound values of the input elements
+		with this in place we can either show or hide the warning message  -->
+		<p>
+			here we check if the isEmpty variable is true, that is the case when either !name or
+			!amount are given in the bound values of the input elements with this in place we can
+			either show or hide the warning message
+		</p>
+		{#if isEmpty}
+			<p class="form-empty">please fill out all the form fields</p>
+		{/if}
 		<button type="submit" class="btn btn-block">add expense</button>
 		<button type="button" class="close-btn"
 			><i class="fas fa-times"></i>
