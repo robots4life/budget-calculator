@@ -64,7 +64,14 @@
 		{#if isEmpty}
 			<p class="form-empty">please fill out all the form fields</p>
 		{/if}
-		<button type="submit" class="btn btn-block">add expense</button>
+		<!--
+			https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled 
+			The Boolean disabled attribute, when present, makes the element not mutable, focusable, or even submitted with the form. The user can neither edit nor focus on the control, nor its form control descendants. If the disabled attribute is specified on a form control, the element and its form control descendants do not participate in constraint validation. Often browsers grey out such controls and it won't receive any browsing events, like mouse clicks or focus-related ones.
+
+			so we set the disabled attribute of the button to the reactive value of the result of isEmpty
+			if isEmpty is true then the button is disabled
+		-->
+		<button type="submit" class="btn btn-block" disabled="{isEmpty}">add expense</button>
 		<button type="button" class="close-btn"
 			><i class="fas fa-times"></i>
 			close</button
