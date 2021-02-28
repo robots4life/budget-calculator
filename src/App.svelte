@@ -36,6 +36,10 @@
 	// in this case it is named the same as the property "expenses" of the ExpensesList component
 	let expenses = [...expensesData]
 
+	// here we count the number of single expenses and make the value reactive to the
+	// amount of items in the expenses array of objects
+	$: total_number_of_expenses = expenses.length
+
 	// functions
 	function removeSingleExpense(id) {
 		// we use the filter method to create a new array without
