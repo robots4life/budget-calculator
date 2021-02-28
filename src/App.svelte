@@ -16,6 +16,10 @@
 	// we import the ExpensesTotal.svelte component
 	import TotalExpenses from './TotalExpenses.svelte'
 
+	// have the ability to enter a new expense or edit an existing expense we
+	// make an ExpenseForm component and import it to App
+	import ExpenseForm from './ExpenseForm.svelte'
+
 	// data
 	// to work the the total amount of all expenses as well as the number of expenses
 	// we also export the properties of that component
@@ -96,6 +100,9 @@
 
 <Navbar />
 <main class="content">
+	<!-- let's place the ExpenseForm right at the top of the App.. -->
+	<ExpenseForm />
+
 	<!-- let's place the TotalExpenses component at the beginning of the App.. -->
 	<TotalExpenses
 		totals_title="{totals_title}"
