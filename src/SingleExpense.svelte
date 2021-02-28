@@ -32,8 +32,8 @@
 	const state = getContext('state')
 </script>
 
-<acrtice class="single-expense">
-	<div class="expnese-info">
+<article class="single-expense">
+	<div class="expense-info">
 		<h2>
 			{name}
 			<button class="amount-btn" on:click="{toggleDisplayExpenseData}">
@@ -74,4 +74,4 @@
 			<i class="fas fa-trash"></i>
 		</button>
 	</div>
-</acrtice>
+</article>
