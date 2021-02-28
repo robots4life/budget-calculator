@@ -70,8 +70,13 @@
 
 			so we set the disabled attribute of the button to the reactive value of the result of isEmpty
 			if isEmpty is true then the button is disabled
+
+			to also have a "disabled" class that can be toggled on the element we use the class: directive
+			and set that equal to the reactive variable of isEmpty
 		-->
-		<button type="submit" class="btn btn-block" disabled="{isEmpty}">add expense</button>
+		<button type="submit" class="btn btn-block" class:disabled="{isEmpty}" disabled="{isEmpty}"
+			>add expense</button
+		>
 		<button type="button" class="close-btn"
 			><i class="fas fa-times"></i>
 			close</button
