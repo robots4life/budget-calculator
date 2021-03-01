@@ -1,14 +1,15 @@
 <script>
 	import Title from './Title.svelte'
-	let name = 'dinner'
-	let amount = 50
+	let expense_id
+	let name = ''
+	let amount = null
 
 	// this is AWESOME
 	// by setting up a reactive statement and logging
 	// the variables name and amount that have
 	// two way binding in place we can immediately see
 	// their new value in the console :))
-	$: console.log({ name, amount })
+	$: console.log({ expense_id, name, amount })
 
 	// check for empty fields in the form
 	// remember, a truthy value is considered TRUE
@@ -23,20 +24,33 @@
 	if (name) {
 		console.log(name)
 	}
-	$: isEmpty = !name || !amount
+
+	// 	we need to create the isEmpty variable since our code relies on it later
+	let isEmpty = true
+
+	$: {
+		isEmpty = !name || !amount
+
+		if (isEmpty) {
+			expense_id = 'fill in NAME and AMOUNT'
+		} else {
+			expense_id = Math.random() * Date.now()
+		}
+	}
 
 	// the function that runs when we click on the submit button of the form element
 	function formSubmitHandler(event) {
 		console.log('form submitted on : ' + new Date())
 		console.log(event)
 
-		console.log(name, amount)
+		console.log(id, name, amount)
 
 		// after submitting the form data we reset the values of
 		// name and amount to an empty string and null
 		// this resets the form and isEmpty kicks in again
 		// disabling the submit button before a new form
 		// can be submitted
+		id = null
 		name = ''
 		amount = null
 	}
@@ -59,6 +73,21 @@
 	// that will include various bits of functionality for the form -->
 	<form class="expense-form" on:submit|preventDefault="{formSubmitHandler}">
 		<div class="form-control">
+			<label for="id">id</label>
+
+			<!-- approach 1 -->
+			<!-- {#if !isEmpty} -->
+			<!-- REMEMBER THIS!!
+				DATE vs. FUNCTION
+				https://svelte.dev/repl/c2d4e11895724786a848917c69b41ff3?version=3.34.0 -->
+			<!-- <input type="text" id="id" value="{Math.random() * Date.now()}" disabled /> -->
+			<!-- {/if} -->
+
+			<!-- approach 2 with a function and showing the expense Id field immediately -->
+			<input type="text" id="id" bind:value="{expense_id}" disabled />
+		</div>
+
+		<div class="form-control">
 			<label for="name">name</label>
 
 			<!-- we bind the value of variable NAME to the value it receives in the input form
@@ -68,6 +97,7 @@
 
 		<div class="form-control">
 			<label for="amount">amount</label>
+
 			<!-- we bind the value of variable AMOUNT to the value it receives in the input form
                 this is two way binding - between the defined variable AMOUNT and the input field value -->
 			<input type="text" id="amount" bind:value="{amount}" />
