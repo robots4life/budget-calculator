@@ -29,7 +29,7 @@
 					
 					deleteSingleExpense
 
-					come from
+					comes from
 					
 					on:click="{() => dispatch('deleteSingleExpense', { id, name: 'hello from a single expense' })}"
 					in SingleExpense.svelte -->
