@@ -1,7 +1,7 @@
 <script>
 	import Title from './Title.svelte'
-	let name = ''
-	let amount = null
+	let name = 'dinner'
+	let amount = 50
 
 	// this is AWESOME
 	// by setting up a reactive statement and logging
@@ -24,6 +24,22 @@
 		console.log(name)
 	}
 	$: isEmpty = !name || !amount
+
+	// the function that runs when we click on the submit button of the form element
+	function formSubmitHandler(event) {
+		console.log('form submitted on : ' + new Date())
+		console.log(event)
+
+		console.log(name, amount)
+
+		// after submitting the form data we reset the values of
+		// name and amount to an empty string and null
+		// this resets the form and isEmpty kicks in again
+		// disabling the submit button before a new form
+		// can be submitted
+		name = ''
+		amount = null
+	}
 </script>
 
 <!-- to illustrate two way binding we have two paragraphs
@@ -38,7 +54,10 @@
 
 <section class="form">
 	<Title title="add expense" />
-	<form class="expense-form">
+	<!-- the form has a submit event that we can listen to
+		here we write on:submit and then work with a submit handler
+	// that will include various bits of functionality for the form -->
+	<form class="expense-form" on:submit|preventDefault="{formSubmitHandler}">
 		<div class="form-control">
 			<label for="name">name</label>
 
