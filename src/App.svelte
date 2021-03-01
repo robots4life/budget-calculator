@@ -3,18 +3,22 @@
 	// here we import setContext from Svelte and define
 	// a name and function for it so that it can use i.e.
 	// the removeSingleExpense() function inside
-	// the SingleExpense.svelte compontent SKIPPING the
-	// middle component ExpensesList.Ssvelte
+	// the SingleExpense.svelte component SKIPPING the
+	// middle component ExpensesList.Svelte
 	import { setContext } from 'svelte'
 
 	// components
 	import Navbar from './Navbar.svelte'
-	// when we import the ExpensesList the property "expenses" in it is also importet as part of the component
+	// when we import the ExpensesList the property "expenses" in it is also imported as part of the component
 	import ExpensesList from './ExpensesList.svelte'
 
 	// to work the the total amount of all expenses as well as the number of expenses
 	// we import the ExpensesTotal.svelte component
 	import TotalExpenses from './TotalExpenses.svelte'
+
+	// have the ability to enter a new expense or edit an existing expense we
+	// make an ExpenseForm component and import it to App
+	import ExpenseForm from './ExpenseForm.svelte'
 
 	// data
 	// to work the the total amount of all expenses as well as the number of expenses
@@ -23,12 +27,12 @@
 	let total_amount_of_all_expenses = 0
 	let total_number_of_expenses = 0
 
-	// beloved reactiviy
+	// beloved reactivity
 	// so to introduce reactivity to the App we use the $ dollar sing and a colon
-	// after that it is vanilla JavsScript and up to us what to do with the value
-	$: total_amount_of_all_expenses = expenses.reduce((accumulater, current_item) => {
-		console.log(accumulater, current_item.amount)
-		return (accumulater = accumulater + current_item.amount)
+	// after that it is vanilla JavasScript and up to us what to do with the value
+	$: total_amount_of_all_expenses = expenses.reduce((accumulator, current_item) => {
+		console.log(accumulator, current_item.amount)
+		return (accumulator = accumulator + current_item.amount)
 	}, 0)
 
 	import expensesData from './expenses'
@@ -61,8 +65,46 @@
 
 	// for clearing all expenses we make a new function and add that to the state object
 	function deleteAllExpenses() {
-		// we simply set the expenses array of objects each with single expense data to an emtpy array
+		// we simply set the expenses array of objects each with single expense data to an empty array
 		expenses = []
+	}
+
+	// function addSingleExpense({ id: expense_id, name, amount }) {
+	// 	console.table(expense_id, name, amount)
+	// }
+
+	function addSingleExpense({ expense_id, name, amount }) {
+		// console.log(expense_id, name, amount)
+
+		let expense = {
+			id: expense_id,
+			name: name,
+			amount: amount
+		}
+		console.table(expense)
+
+		// here we add the new expense to the existing expenses array of objects
+		// that, with the use of the spread operator, allows us to add a new
+		// expense array it as a single object with the properties
+		// id: expense_id, name: name and amount: amount
+		// to the expenses array of objects
+
+		// HA, adding the expense at the beginning of the array
+		// always replaces the previously added array item with a new one
+		// though it does NOT work, always overwrites the previously added new item!
+		// expenses = [expense, ...expensesData]
+
+		// BUT pay attention to what is added and to what is updated!
+		// https://discord.com/channels/@me/773194949667323974/815905771543593030
+		let my_list = [1, 2, 3]
+		let my_new_list = [...my_list, 4]
+		console.log(my_new_list)
+		my_new_list = [...my_list, 5]
+		console.log(my_new_list)
+
+		// SO this here works, because we are not using expensesData but the already
+		// existing expenses that have changed
+		expenses = [expense, ...expenses]
 	}
 
 	// context
@@ -80,22 +122,26 @@
 
 	// approach 2
 	// the name 'state' can be any other value if you like
-	// here we set up multiple functions to be passed by set- and recieved by getContext
+	// here we set up multiple functions to be passed by set- and received by getContext
 	const state = {
 		name: 'hello world',
 		removeSingleExpense: removeSingleExpense,
 		editSingleExpense: editSingleExpense,
-		deleteAllExpenses: deleteAllExpenses
+		deleteAllExpenses: deleteAllExpenses,
+		addSingleExpense: addSingleExpense
 	}
 
 	// here we pass the state object as a second argument to the setContext function
-	// in this case all methods of the object are being passed and can be recieved
+	// in this case all methods of the object are being passed and can be received
 	// by the components that need them
 	setContext('state', state)
 </script>
 
 <Navbar />
 <main class="content">
+	<!-- let's place the ExpenseForm right at the top of the App.. -->
+	<ExpenseForm />
+
 	<!-- let's place the TotalExpenses component at the beginning of the App.. -->
 	<TotalExpenses
 		totals_title="{totals_title}"
@@ -103,7 +149,7 @@
 		total_number_of_expenses="{total_number_of_expenses}"
 	/>
 
-	<!-- here we are passing down / assigning the expeneses data in the let expenses variable to the property "expenses" from the ExpensesList component -->
+	<!-- here we are passing down / assigning the expenses data in the let expenses variable to the property "expenses" from the ExpensesList component -->
 
 	<!-- here we are passing down the removeSingleExpense(id) function to ExpensesList.svelte with a property called  "removeSingleExpense"
 	that means we also have to create the property as export let removeSingleExpense inside the ExpensesList.svelte component -->

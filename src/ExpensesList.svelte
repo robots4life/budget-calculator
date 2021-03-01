@@ -25,7 +25,7 @@
 
 	<ul>
 		{#each expenses as expense, index}
-			<!-- same as passing down the property and attached click handlet from App to ExpensesList we also need to pass it down one level deeper to the SingleExpense component -->
+			<!-- same as passing down the property and attached click handler from App to ExpensesList we also need to pass it down one level deeper to the SingleExpense component -->
 			<SingleExpense index="{index + 1}" {...expense} />
 		{:else}
 			<h2>currently there are no expenses</h2>

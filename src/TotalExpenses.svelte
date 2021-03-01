@@ -1,5 +1,5 @@
 <script>
-	export let totals_title = 'default title'
+	export let totals_title = 'total expenses'
 	export let total_amount_of_all_expenses
 	export let total_number_of_expenses
 </script>
