@@ -1,8 +1,13 @@
 <script>
+	import { getContext } from 'svelte'
+
+	const { addSingleExpense } = getContext('state')
+
 	import Title from './Title.svelte'
+
 	let expense_id
-	let name = ''
-	let amount = null
+	let name = 'vacation'
+	let amount = 5600
 
 	// this is AWESOME
 	// by setting up a reactive statement and logging
@@ -40,6 +45,8 @@
 	// 	we need to create the isEmpty variable since our code relies on it later
 	let isEmpty = true
 
+	// this is a REACTIVE block where we can assign variables to various values
+	// or functions on given conditions..
 	$: {
 		isEmpty = !name || !amount
 
@@ -56,14 +63,18 @@
 		console.log('form submitted on : ' + new Date())
 		console.log(event)
 
-		console.log(id, name, amount)
+		// console.log(expense_id, name, amount)
+
+		// make sure to call the function with an object as argument
+		// this is done, per the tut, to "not have to worry about the sequence of the object properties"
+		addSingleExpense({ expense_id, name, amount })
 
 		// after submitting the form data we reset the values of
 		// name and amount to an empty string and null
 		// this resets the form and isEmpty kicks in again
 		// disabling the submit button before a new form
 		// can be submitted
-		id = null
+		expense_id = null
 		name = ''
 		amount = null
 	}
@@ -86,7 +97,7 @@
 	// that will include various bits of functionality for the form -->
 	<form class="expense-form" on:submit|preventDefault="{formSubmitHandler}">
 		<div class="form-control">
-			<label for="id">id</label>
+			<label for="expense_id">id</label>
 
 			<!-- approach 1 -->
 			<!-- {#if !isEmpty} -->
@@ -97,7 +108,7 @@
 			<!-- {/if} -->
 
 			<!-- approach 2 with a function and showing the expense Id field immediately -->
-			<input type="text" id="id" bind:value="{expense_id}" disabled />
+			<input type="text" id="expense_id" bind:value="{expense_id}" disabled />
 		</div>
 
 		<div class="form-control">
@@ -107,13 +118,12 @@
                 this is two way binding - between the defined variable NAME and the input field value -->
 			<input type="text" id="name" bind:value="{name}" />
 		</div>
-
 		<div class="form-control">
 			<label for="amount">amount</label>
 
 			<!-- we bind the value of variable AMOUNT to the value it receives in the input form
                 this is two way binding - between the defined variable AMOUNT and the input field value -->
-			<input type="text" id="amount" bind:value="{amount}" />
+			<input type="number" id="amount" bind:value="{amount}" />
 		</div>
 		<!-- here we check if the isEmpty variable is true, that is the case when
 		either !name or !amount are given in the bound values of the input elements

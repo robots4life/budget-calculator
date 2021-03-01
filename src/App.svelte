@@ -69,6 +69,44 @@
 		expenses = []
 	}
 
+	// function addSingleExpense({ id: expense_id, name, amount }) {
+	// 	console.table(expense_id, name, amount)
+	// }
+
+	function addSingleExpense({ expense_id, name, amount }) {
+		// console.log(expense_id, name, amount)
+
+		let expense = {
+			id: expense_id,
+			name: name,
+			amount: amount
+		}
+		console.table(expense)
+
+		// here we add the new expense to the existing expenses array of objects
+		// that, with the use of the spread operator, allows us to add a new
+		// expense array it as a single object with the properties
+		// id: expense_id, name: name and amount: amount
+		// to the expenses array of objects
+
+		// HA, adding the expense at the beginning of the array
+		// always replaces the previously added array item with a new one
+		// though it does NOT work, always overwrites the previously added new item!
+		// expenses = [expense, ...expensesData]
+
+		// BUT pay attention to what is added and to what is updated!
+		// https://discord.com/channels/@me/773194949667323974/815905771543593030
+		let my_list = [1, 2, 3]
+		let my_new_list = [...my_list, 4]
+		console.log(my_new_list)
+		my_new_list = [...my_list, 5]
+		console.log(my_new_list)
+
+		// SO this here works, because we are not using expensesData but the already
+		// existing expenses that have changed
+		expenses = [expense, ...expenses]
+	}
+
 	// context
 	// approach 1
 	// here we define the context for the removeSingleExpense() function
@@ -89,7 +127,8 @@
 		name: 'hello world',
 		removeSingleExpense: removeSingleExpense,
 		editSingleExpense: editSingleExpense,
-		deleteAllExpenses: deleteAllExpenses
+		deleteAllExpenses: deleteAllExpenses,
+		addSingleExpense: addSingleExpense
 	}
 
 	// here we pass the state object as a second argument to the setContext function
