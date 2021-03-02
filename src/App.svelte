@@ -31,8 +31,8 @@
 	// so to introduce reactivity to the App we use the $ dollar sing and a colon
 	// after that it is vanilla JavaScript and up to us what to do with the value
 	$: total_amount_of_all_expenses = expenses.reduce((accumulator, current_item) => {
-		console.log(accumulator, current_item.amount)
-		return (accumulator = accumulator + current_item.amount)
+		console.log(accumulator, current_item.expAmount)
+		return (accumulator = accumulator + current_item.expAmount)
 	}, 0)
 
 	import expensesData from './expenses'
@@ -45,7 +45,7 @@
 	$: total_number_of_expenses = expenses.length
 
 	// functions
-	function removeSingleExpense(id) {
+	function removeSingleExpense(expId) {
 		// we use the filter method to create a new array without
 		// the array item with the particular id
 
@@ -56,28 +56,29 @@
 		// if the id of the item in the array MATCHES the id as argument of the removeSingleExpense function, so the id we are passing in, it will NOT be in the new array
 
 		// if the id we are passing is NOT the idem.id of any of the array items it will be in the new array
-		expenses = expenses.filter((item) => item.id !== id)
+		expenses = expenses.filter((item) => item.expId !== expId)
 	}
 
 	// edit_expense branch
 	let setExpId = null
 	let setExpName = ''
 	let setExpAmount = null
-	function editSingleExpense(setExpId) {
-		console.log(setExpId)
+
+	function editSingleExpense(expId) {
+		console.log(expId)
 
 		// here we use the find method to find the expense to be edited by its expense_id
 		// if the item id matches the setExpId then that is the item we like to edit
-		let expense = expenses.find((item) => item.id === setExpId)
+		let expense = expenses.find((item) => item.expId === expId)
 		console.table(expense)
 
 		// here we edit the id, name and amount of the expense we found with the find method
 		// so the new properties of the expense object will have the values of setExpId, setExpName and setExpAmount
 		// later on we need to pass these values to a form to be able to edit them to our
 		// liking and then obviously also submit the form with the desired changes to edit the single expense
-		setExpId = expense.id
-		setExpName = expense.name
-		setExpAmount = expense.amount
+		setExpId = expense.expId
+		setExpName = expense.expName
+		setExpAmount = expense.expAmount
 		console.table({ setExpId, setExpName, setExpAmount })
 	}
 
@@ -91,13 +92,13 @@
 	// 	console.table(expense_id, name, amount)
 	// }
 
-	function addSingleExpense({ expense_id, name, amount }) {
+	function addSingleExpense({ expId, expName, expAmount }) {
 		// console.log(expense_id, name, amount)
 
 		let expense = {
-			id: expense_id,
-			name: name,
-			amount: amount
+			expId: expId,
+			expName: expName,
+			expAmount: expAmount
 		}
 		console.table(expense)
 
@@ -162,7 +163,7 @@
 	<!-- https://discord.com/channels/@me/773194949667323974/816243431562280991 
 		wanting to NOT export these properties would ONLY work with a store
 		so here we HAVE to pass the properties and their values to the ExpenseForm -->
-	<ExpenseForm expense_id="{setExpId}" name="{setExpName}" amount="{setExpAmount}" />
+	<ExpenseForm expId="{setExpId}" expName="{setExpName}" expAmount="{setExpAmount}" />
 
 	<!-- let's place the TotalExpenses component at the beginning of the App.. -->
 	<TotalExpenses

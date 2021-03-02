@@ -5,12 +5,12 @@
 	import { getContext } from 'svelte'
 
 	// properties
-	export let index
-	export let id
-	export let name
-	export let amount
+	export let expIndex
+	export let expId
+	export let expName
+	export let expAmount
 
-	let displayExpenseData = false
+	let displayExpenseData = true
 
 	function toggleDisplayExpenseData() {
 		displayExpenseData = !displayExpenseData
@@ -35,23 +35,24 @@
 <article class="single-expense">
 	<div class="expense-info">
 		<h2>
-			{name}
+			{expName}
 			<button class="amount-btn" on:click="{toggleDisplayExpenseData}">
-				<i class="fas fa-caret-down" index="index-{index}"></i>
+				<i class="fas fa-caret-down" expIndex="expIndex-{expIndex}"></i>
 			</button>
 		</h2>
 		{#if displayExpenseData}
 			<br />
-			<p>index : {index}</p>
-			<p>id : {id}</p>
-			<h4>amount : ${amount}</h4>
+			<p>expIndex : {expIndex}</p>
+			<p>expId : {expId}</p>
+			<p>expName : {expName}</p>
+			<h4>expAmount : ${expAmount}</h4>
 			<h4>getContext from state object : {state.name}</h4>
 		{/if}
 	</div>
 	<div class="expense-buttons">
 		<!-- edit button -->
 		<!-- approach 2 - when we pass the whole state object the methods can be called with a dot . -->
-		<button class="expense-btn edit-btn" on:click="{state.editSingleExpense(id, name, amount)}">
+		<button class="expense-btn edit-btn" on:click="{state.editSingleExpense(expId)}">
 			<i class="fas fa-pen"></i>
 		</button>
 
@@ -70,7 +71,7 @@
 		also works fine -->
 
 		<!-- approach 1 -->
-		<button class="expense-btn delete-btn" on:click="{removeSingleExpense(id)}">
+		<button class="expense-btn delete-btn" on:click="{removeSingleExpense(expId)}">
 			<i class="fas fa-trash"></i>
 		</button>
 	</div>

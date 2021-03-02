@@ -1,22 +1,39 @@
+import { uuidv4 } from './utils'
+
 export default [
 	{
-		id: Math.random() * Date.now(),
-		name: 'rent',
-		amount: 2300
+		expId: uuidv4(),
+		expName: 'rent',
+		expAmount: 2300
 	},
 	{
-		id: Math.random() * Date.now(),
-		name: 'car payment',
-		amount: 400
+		expId: uuidv4(),
+		expName: 'car payment',
+		expAmount: 400
 	},
 	{
-		id: Math.random() * Date.now(),
-		name: 'student loan',
-		amount: 400
+		expId: uuidv4(),
+		expName: 'student loan',
+		expAmount: 400
 	},
 	{
-		id: Math.random() * Date.now(),
-		name: 'credit card',
-		amount: 2000
+		expId: uuidv4(),
+		expName: 'credit card',
+		expAmount: 2000
+	},
+	{
+		expId: uuidv4(),
+		expName: 'vacation',
+		expAmount: 4200
+	},
+	{
+		expId: uuidv4(),
+		expName: 'dinner',
+		expAmount: 120
+	},
+	{
+		expId: uuidv4(),
+		expName: 'theatre',
+		expAmount: 80
 	}
 ]

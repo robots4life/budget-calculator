@@ -15,7 +15,7 @@
 	// meaning it is already an array of objects as seen in expenses.js
 	export let expenses
 
-	console.log(expenses)
+	console.table(expenses)
 
 	const { deleteAllExpenses } = getContext('state')
 </script>
@@ -24,9 +24,9 @@
 	<SectionTitle title="expenses list" />
 
 	<ul>
-		{#each expenses as expense, index}
+		{#each expenses as expense, expIndex}
 			<!-- same as passing down the property and attached click handler from App to ExpensesList we also need to pass it down one level deeper to the SingleExpense component -->
-			<SingleExpense index="{index + 1}" {...expense} />
+			<SingleExpense expIndex="{expIndex + 1}" {...expense} />
 		{:else}
 			<h2>currently there are no expenses</h2>
 		{/each}
