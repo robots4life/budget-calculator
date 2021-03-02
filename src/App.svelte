@@ -68,7 +68,7 @@
 
 		// here we use the find method to find the expense to be edited by its expense_id
 		// if the item id matches the setExpId then that is the item we like to edit
-		let expense = expenses.find((item) => item.setExpId === item)
+		let expense = expenses.find((item) => item.id === setExpId)
 		console.log(expense)
 	}
 

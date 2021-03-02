@@ -1,6 +1,7 @@
 <script>
 	import { getContext } from 'svelte'
 
+	// we get the context of the state object and destructure the addSingleExpense function out of it
 	const { addSingleExpense } = getContext('state')
 
 	import Title from './Title.svelte'
