@@ -44,6 +44,15 @@
 	// amount of items in the expenses array of objects
 	$: total_number_of_expenses = expenses.length
 
+	// to differentiate between adding an expense and editing an expense
+	// we use a reactive variable that is based on setExpId
+	// if we work with editSingleExpense and in there have
+	// setExpId = expense.expId
+	// so setExpId is not NULL any more we know that we have clicked
+	// the edit expense button and hence the isEditing reactive value
+	// should be true, otherwise it is just in its default state, null, so false
+	$: isEditingSingleExpense = setExpId ? true : false
+
 	// functions
 	function removeSingleExpense(expId) {
 		// we use the filter method to create a new array without
@@ -163,7 +172,12 @@
 	<!-- https://discord.com/channels/@me/773194949667323974/816243431562280991 
 		wanting to NOT export these properties would ONLY work with a store
 		so here we HAVE to pass the properties and their values to the ExpenseForm -->
-	<ExpenseForm expId="{setExpId}" expName="{setExpName}" expAmount="{setExpAmount}" />
+	<ExpenseForm
+		expId="{setExpId}"
+		expName="{setExpName}"
+		expAmount="{setExpAmount}"
+		isEditingSingleExpense="{isEditingSingleExpense}"
+	/>
 
 	<!-- let's place the TotalExpenses component at the beginning of the App.. -->
 	<TotalExpenses

@@ -28,6 +28,8 @@
 	export let expName
 	export let expAmount
 
+	export let isEditingSingleExpense
+
 	// this is AWESOME
 	// by setting up a reactive statement and logging
 	// the variables name and amount that have
@@ -116,9 +118,12 @@
 	to illustrate two way binding we have two paragraphs as we change values in the input fields in
 	the form below the values in these paragraphs change as well
 </p>
+<p>isEmpty : {isEmpty}</p>
 <p>expId : {expId}</p>
 <p>expName : {expName}</p>
 <p>expAmount: {expAmount}</p>
+<p>here we check if we are adding a new expense item OR editing an existing item</p>
+<p>isEditingSingleExpense : {isEditingSingleExpense}</p>
 
 <section class="form">
 	<Title title="add expense" />
