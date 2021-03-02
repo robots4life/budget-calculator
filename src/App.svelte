@@ -59,8 +59,12 @@
 		expenses = expenses.filter((item) => item.id !== id)
 	}
 
-	function editSingleExpense(id, name, amount) {
-		console.log(id, name, amount)
+	// edit_expense branch
+	let setExpId = null
+	let setExpName = ''
+	let setExpAmount = null
+	function editSingleExpense(setExpId, setExpName, setExpAmount) {
+		console.log(setExpId, setExpName, setExpAmount)
 	}
 
 	// for clearing all expenses we make a new function and add that to the state object
