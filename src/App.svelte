@@ -63,8 +63,13 @@
 	let setExpId = null
 	let setExpName = ''
 	let setExpAmount = null
-	function editSingleExpense(setExpId, setExpName, setExpAmount) {
-		console.log(setExpId, setExpName, setExpAmount)
+	function editSingleExpense(setExpId) {
+		console.log(setExpId)
+
+		// here we use the find method to find the expense to be edited by its expense_id
+		// if the item id matches the setExpId then that is the item we like to edit
+		let expense = expenses.find((item) => item.setExpId === item)
+		console.log(expense)
 	}
 
 	// for clearing all expenses we make a new function and add that to the state object
