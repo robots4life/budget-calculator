@@ -6,9 +6,9 @@
 
 	import Title from './Title.svelte'
 
-	let expense_id
-	let name = 'vacation'
-	let amount = 5600
+	export let expense_id
+	export let name = ''
+	export let amount = null
 
 	// this is AWESOME
 	// by setting up a reactive statement and logging
@@ -68,6 +68,7 @@
 
 		// make sure to call the function with an object as argument
 		// this is done, per the tut, to "not have to worry about the sequence of the object properties"
+		// better explanation => https://discord.com/channels/@me/773194949667323974/815897450472144896
 		addSingleExpense({ expense_id, name, amount })
 
 		// after submitting the form data we reset the values of

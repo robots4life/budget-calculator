@@ -29,7 +29,7 @@
 
 	// beloved reactivity
 	// so to introduce reactivity to the App we use the $ dollar sing and a colon
-	// after that it is vanilla JavasScript and up to us what to do with the value
+	// after that it is vanilla JavaScript and up to us what to do with the value
 	$: total_amount_of_all_expenses = expenses.reduce((accumulator, current_item) => {
 		console.log(accumulator, current_item.amount)
 		return (accumulator = accumulator + current_item.amount)
@@ -69,7 +69,7 @@
 		// here we use the find method to find the expense to be edited by its expense_id
 		// if the item id matches the setExpId then that is the item we like to edit
 		let expense = expenses.find((item) => item.id === setExpId)
-		console.log(expense)
+		console.table(expense)
 
 		// here we edit the id, name and amount of the expense we found with the find method
 		// so the new properties of the expense object will have the values of setExpId, setExpName and setExpAmount
@@ -78,7 +78,7 @@
 		setExpId = expense.id
 		setExpName = expense.name
 		setExpAmount = expense.amount
-		console.table({ setExpId, setExpAmount, setExpName })
+		console.table({ setExpId, setExpName, setExpAmount })
 	}
 
 	// for clearing all expenses we make a new function and add that to the state object
@@ -158,7 +158,7 @@
 <Navbar />
 <main class="content">
 	<!-- let's place the ExpenseForm right at the top of the App.. -->
-	<ExpenseForm />
+	<ExpenseForm expense_id="{setExpId}" name="{setExpName}" amount="{setExpAmount}" />
 
 	<!-- let's place the TotalExpenses component at the beginning of the App.. -->
 	<TotalExpenses
