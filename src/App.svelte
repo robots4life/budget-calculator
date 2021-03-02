@@ -158,6 +158,10 @@
 <Navbar />
 <main class="content">
 	<!-- let's place the ExpenseForm right at the top of the App.. -->
+
+	<!-- https://discord.com/channels/@me/773194949667323974/816243431562280991 
+		wanting to NOT export these properties would ONLY work with a store
+		so here we HAVE to pass the properties and their values to the ExpenseForm -->
 	<ExpenseForm expense_id="{setExpId}" name="{setExpName}" amount="{setExpAmount}" />
 
 	<!-- let's place the TotalExpenses component at the beginning of the App.. -->

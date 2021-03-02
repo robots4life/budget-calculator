@@ -6,6 +6,8 @@
 
 	import Title from './Title.svelte'
 
+	// https://discord.com/channels/@me/773194949667323974/816243431562280991
+	// wanting to NOT export these properties would ONLY work with a store
 	export let expense_id
 	export let name = ''
 	export let amount = null
