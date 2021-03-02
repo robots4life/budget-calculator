@@ -70,6 +70,15 @@
 		// if the item id matches the setExpId then that is the item we like to edit
 		let expense = expenses.find((item) => item.id === setExpId)
 		console.log(expense)
+
+		// here we edit the id, name and amount of the expense we found with the find method
+		// so the new properties of the expense object will have the values of setExpId, setExpName and setExpAmount
+		// later on we need to pass these values to a form to be able to edit them to our
+		// liking and then obviously also submit the form with the desired changes to edit the single expense
+		setExpId = expense.id
+		setExpName = expense.name
+		setExpAmount = expense.amount
+		console.table({ setExpId, setExpAmount, setExpName })
 	}
 
 	// for clearing all expenses we make a new function and add that to the state object
